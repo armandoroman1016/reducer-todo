@@ -9,8 +9,6 @@ import { initialState, AppReducer } from './reducers/App_Reducer'
 
 function App() {
 
-  console.log(initialState);
-
   const [ state , dispatch ] = useReducer( AppReducer, initialState )
 
   // const [list, setList] = useState(toDoList)
@@ -49,7 +47,7 @@ function App() {
   // list : localStorage.getItem('list') === null ? [] : JSON.parse(localStorage.getItem('list'))
 
   // useEffect( () => {
-  //   localStorage.setItem('list', JSON.stringify(list));
+  // //   localStorage.setItem('list', JSON.stringify(list));
   // }, [list] ) 
 
 
@@ -61,16 +59,12 @@ function App() {
         <Card.Content className = 'items'>
           <TodoList 
             list = { state } 
-            // toggleItem = {toggleItem}
             dispatch = { dispatch }
           />
         </Card.Content>
         <Card.Content className = 'form-container'>
         <ToDoForm 
-          // addTask = {addTask}
-          // clearCompleted = {clearCompleted}
-          // arrList = {list}
-          arrList = { state }
+          list = { state }
           dispatch = { dispatch }
           />
         </Card.Content>

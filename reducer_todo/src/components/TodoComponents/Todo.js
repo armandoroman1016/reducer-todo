@@ -1,8 +1,11 @@
 import React from 'react'
 
 const ToDo = props => {
+
+    const {dispatch} = props
+
     return (
-        <div onClick = {() => props.toggleItem(props.item.id)}>
+        <div onClick = {() =>{ dispatch({ type : 'TOGGLE_ITEM', payload: props.item }) }}>
             {props.item.completed ? 
                 <p style = {{textDecorationLine : 'line-through' }} className = 'list-item'>{props.item.task}</p>
                 : <p className = 'list-item'>{props.item.task}</p>

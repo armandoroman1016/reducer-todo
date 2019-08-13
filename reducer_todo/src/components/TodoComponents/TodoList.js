@@ -7,23 +7,24 @@ const TodoList = props => {
 
     const { list } = props
 
-    console.log(list.list)
+    const { dispatch } = props
 
+    console.log(list)
     return (
         <div className = 'todo-list' >
-            {list.length > 1 ?
-
+            {list.list.length > 0 ?
                 <p>Click on your tasks to mark complete.</p>
-
                 :<p>Start by adding your tasks with the form below.</p>
-
             }
 
-            {/*list.map( item => (
-                <ToDo item = {item} key = {item.id} 
-                // toggleItem = {toggleItem}
+            {list.list.map( (item, index) => (
+                <ToDo 
+                    item = {item} 
+                    key = {index} 
+                    dispatch= {dispatch}
+                    list = {list}
                 />
-            ))*/}
+            ))}
     </div>
     )
 }

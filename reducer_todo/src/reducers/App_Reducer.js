@@ -6,7 +6,7 @@ export const AppReducer = (state, action) => {
         case 'ADD_TASK':
             return {
                 ...state,
-                list : [...state.list , action.payload ]
+                list : [...state.list , {...action.payload, id: Date.now()} ],
         };
         case 'TOGGLE_ITEM':
             return {
