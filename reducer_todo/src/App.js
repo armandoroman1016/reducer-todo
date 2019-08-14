@@ -1,75 +1,22 @@
-import React, { useState , useReducer} from 'react';
+import React, { useReducer } from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import './to_do_list.scss'
-import { Card } from 'semantic-ui-react'
-import TodoList from './components/TodoComponents/TodoList'
-import ToDoForm from './components/TodoComponents/TodoForm'
+import ToDoCard from './components/TodoComponents/toDoCard'
 
-import { initialState, AppReducer } from './reducers/App_Reducer'
+import { initialState, ToDoReducer } from './reducers/To_Do_Reducer'
 
 function App() {
 
-  const [ state , dispatch ] = useReducer( AppReducer, initialState )
-
-  // const [list, setList] = useState(toDoList)
-
-  // const addTask = taskName => {
-
-  //   const newTask = {
-  //     task : taskName,
-  //     id : Date.now(),
-  //     completed : false
-  //   };
-
-  //   setList([...list, newTask])
-
-  // }
-
-  // const toggleItem = id => {
-
-  //   setList(
-  //     list.map( item => {
-  //       if (item.id === id ) {
-  //         return { ...item , completed : !item.completed}
-  //       } else {
-  //         return item;
-  //       }
-  //     })
-  //   )
-
-  // }
-
-  // const clearCompleted = () => {
-  //   setList(list.filter(item => !item.completed))
-  // }
-
-
-  // list : localStorage.getItem('list') === null ? [] : JSON.parse(localStorage.getItem('list'))
-
-  // useEffect( () => {
-  // //   localStorage.setItem('list', JSON.stringify(list));
-  // }, [list] ) 
-
+  const [ state , dispatch ] = useReducer( ToDoReducer, initialState )
 
     return (
-      <Card className = 'to-do-list'>
-        <Card.Content className = 'header-container'>
-          <Card.Header>React To-Do List</Card.Header>
-        </Card.Content>
-        <Card.Content className = 'items'>
-          <TodoList 
-            list = { state } 
-            dispatch = { dispatch }
-          />
-        </Card.Content>
-        <Card.Content className = 'form-container'>
-        <ToDoForm 
-          list = { state }
-          dispatch = { dispatch }
-          />
-        </Card.Content>
-      </Card>
+
+      <ToDoCard state = {state} dispatch = {dispatch}/>
+
     );
 }
-
 export default App;
+  // const [ ls, setLs ] = useState(localStorage.getItem('list') === null ? [] : JSON.parse(localStorage.getItem('list')))
+  // useEffect( () => {
+    // setLs(localStorage.setItem('list', JSON.stringify(state.list)))
+  // },[state]) 

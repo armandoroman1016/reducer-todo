@@ -1,12 +1,13 @@
+export const initialState = { list : [], localStorage : localStorage.getItem('list') === null ? [] : JSON.parse(localStorage.getItem('list'))}
 
-export const initialState = { list : [] }
+export const ToDoReducer = (state, action) => {
 
-export const AppReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_TASK':
             return {
                 ...state,
                 list : [...state.list , {...action.payload, id: Date.now()} ],
+                ls : localStorage.setItem('list', JSON.stringify([...state.list]))
         };
         case 'TOGGLE_ITEM':
             return {
@@ -19,11 +20,12 @@ export const AppReducer = (state, action) => {
                     }
                 })
             }
-        case 'CLEAR_COMPLETED':
-            return{
-                ...state,
-                list : state.list.filter(item => !item.completed)
+            case 'CLEAR_COMPLETED':
+                return{
+                    ...state,
+                    list : state.list.filter(item => !item.completed)
+                }
+                default : return state
             }
-        default : return state
-    }
+    
 }
